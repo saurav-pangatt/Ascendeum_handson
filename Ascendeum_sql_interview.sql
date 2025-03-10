@@ -84,11 +84,11 @@ SELECT d.name as department_name,avg(e.age) as average_age
 FROM employees e join departments d on e.department_id = d.id
 group by d.name;
 
-select d.name as department_name,count(*) as employee_count_abv_40 from employees e join departments d on e.department_id = d.id
+with high_dep_cnt as(select d.name as department_name,count(*) as employee_count_abv_40 from employees e join departments d on e.department_id = d.id
 where  e.age>40
 group by d.name
-order by count(*) desc
-limit 1;
+order by count(*) desc)
+select * from high_dep_cnt where employee_count_abv_40=(select max(employee_count_abv_40) from high_dep_cnt;
 
 select count(*) as employee_count from employees
 where joining_date>=CURDATE()- INTERVAL 100 DAY;
