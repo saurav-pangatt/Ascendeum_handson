@@ -88,7 +88,7 @@ with high_dep_cnt as(select d.name as department_name,count(*) as employee_count
 where  e.age>40
 group by d.name
 order by count(*) desc)
-select * from high_dep_cnt where employee_count_abv_40=(select max(employee_count_abv_40) from high_dep_cnt;
+select * from high_dep_cnt where employee_count_abv_40=(select max(employee_count_abv_40) from high_dep_cnt);
 
 select count(*) as employee_count from employees
 where joining_date>=CURDATE()- INTERVAL 100 DAY;
